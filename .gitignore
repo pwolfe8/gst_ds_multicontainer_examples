@@ -1,0 +1,24 @@
+# docker compose .env and .containername files built by build.sh
+.env
+.containername
+
+# vscode files
+.vscode/
+
+# output media files
+*.mp4
+*.mkv
+*.jpg
+*.jpeg
+*.png
+*.dot
+*.pdf
+
+# sub git projects
+sub_projects
+
+# network discovery files
+local_network_out.txt
+
+# C/C++ default output
+a.out

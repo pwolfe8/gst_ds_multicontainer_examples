@@ -1,0 +1,90 @@
+version: "3.9"
+services:
+
+  video_intake:
+
+    image: video_intake_img
+    container_name: video_intake
+
+    command: tail -F /dev/null
+
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        FROM_IMG: ${FROM_IMG}
+        GPU_ARG: ${GPU_ARG}
+
+    volumes:
+      ## volumes ##
+      ## mappings ##
+      - /tmp/.X11-unix/:/tmp/.X11-unix # x11
+      - ~/.ssh:/root/.ssh:ro # ssh folder from linux host
+      ## development folder mappings ##
+      - ./examples:/root/gitfoldermap/examples # git folder map
+    network_mode: "host" # uses host network stack
+    working_dir: /root/gitfoldermap/examples
+    # runtime: nvidia
+    # privileged: true 
+    
+
+  gpu_consumer1:    
+    image: gpu_consumer1_img
+    container_name: gpu_consumer1
+
+    command: tail -F /dev/null
+
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        FROM_IMG: ${FROM_IMG}
+        GPU_ARG: ${GPU_ARG}
+
+    volumes:
+      ## volumes ##
+      ## mappings ##
+      - /tmp/.X11-unix/:/tmp/.X11-unix # x11
+      - ~/.ssh:/root/.ssh:ro # ssh folder from linux host
+      ## development folder mappings ##
+      - ./examples:${WORKDIR}/gitfoldermap/examples # git folder map
+      - ./sub_projects/deepstream_pose_estimation:${WORKDIR}/sources/apps/sample_apps/deepstream_pose_estimation
+    network_mode: "host" # uses host network stack
+    working_dir: ${WORKDIR}/sources/deepstream_python_apps/apps/
+    runtime: nvidia
+    # privileged: true
+
+  gpu_consumer2:
+    
+    image: gpu_consumer2_img
+    container_name: gpu_consumer2
+
+    command: tail -F /dev/null
+
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        FROM_IMG: ${FROM_IMG}
+        GPU_ARG: ${GPU_ARG}
+
+    volumes:
+      ## volumes ##
+      ## mappings ##
+      - /tmp/.X11-unix/:/tmp/.X11-unix # x11
+      - ~/.ssh:/root/.ssh:ro # ssh folder from linux host
+      ## development folder mappings ##
+      - ./examples:${WORKDIR}/gitfoldermap/examples # git folder map
+      - ./sub_projects/deepstream_pose_estimation:${WORKDIR}/sources/apps/sample_apps/deepstream_pose_estimation
+    network_mode: "host" # uses host network stack
+    working_dir: ${WORKDIR}/sources/deepstream_python_apps/apps/
+    runtime: nvidia
+    # privileged: true 
+    
+
+
+
+#### create volumes here ####
+# volumes:
+#   root:
+#   /opt/nvidia/deepstream/deepstream-6.0/samples/models/
