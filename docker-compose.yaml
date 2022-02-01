@@ -20,13 +20,14 @@ services:
       ## mappings ##
       - /tmp/.X11-unix/:/tmp/.X11-unix # x11
       - ~/.ssh:/root/.ssh:ro # ssh folder from linux host
-      - /tmp/shm_sock_69:/tmp/shm_sock_69 # shared memory socket mapping
+      - /tmp/shm:/tmp/shm # shared memory socket mapping folder
       ## development folder mappings ##
       - ./examples:/root/gitfoldermap/examples # git folder map
     # network_mode: "host" # uses host network stack
     # network_mode: "overlay" # allow swarm to communicate
     working_dir: /root/gitfoldermap/examples/bash
     runtime: nvidia
+    ipc: host
     # privileged: true 
     # ports:
     #   - "8554:8554"
@@ -56,11 +57,12 @@ services:
       ## development folder mappings ##
       - ./examples:${WORKDIR}/gitfoldermap/examples # git folder map
       - ./sub_projects/deepstream_pose_estimation:${WORKDIR}/sources/apps/sample_apps/deepstream_pose_estimation
-      - /tmp/shm_sock_69:/tmp/shm_sock_69 # shared memory socket mapping
+      - /tmp/shm:/tmp/shm # shared memory socket mapping folder
     # network_mode: "host" # uses host network stack
     # working_dir: ${WORKDIR}/sources/deepstream_python_apps/apps/
     working_dir: ${WORKDIR}/gitfoldermap/examples/bash
     runtime: nvidia
+    ipc: host
     # privileged: true
     # network_mode: "overlay" # allow swarm to communicate
     ports:
@@ -93,12 +95,13 @@ services:
       ## development folder mappings ##
       - ./examples:${WORKDIR}/gitfoldermap/examples # git folder map
       - ./sub_projects/deepstream_pose_estimation:${WORKDIR}/sources/apps/sample_apps/deepstream_pose_estimation
-      - /tmp/shm_sock_69:/tmp/shm_sock_69 # shared memory socket mapping
+      - /tmp/shm:/tmp/shm # shared memory socket mapping folder
     # network_mode: "host" # uses host network stack
     # network_mode: "overlay" # allow swarm to communicate
     # working_dir: ${WORKDIR}/sources/deepstream_python_apps/apps/
     working_dir: ${WORKDIR}/gitfoldermap/examples/bash
     runtime: nvidia
+    ipc: host
     # privileged: true 
     ports:
       - "8555:8555"

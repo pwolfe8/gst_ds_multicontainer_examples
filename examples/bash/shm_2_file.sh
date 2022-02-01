@@ -3,7 +3,7 @@
 # works in coordination with rtspsrc2shm.sh. launch that first
 
 # inputs
-SHM_SOCK_NAME=${1:-/tmp/shm_sock_69}
+SHM_SOCK_NAME=${1:-/tmp/shm/sock_69}
 # SHM_FPS=${2:-20} 
 SHM_FPS=${2:-25} 
 

@@ -4,7 +4,7 @@
 # RTSPURL=${1:-rtsp://testuser:testpwd@10.160.41.21/live}
 RTSPURL=${1:-rtsp://admin:reolink@192.168.0.5//h264Preview_01_main}
 
-SHM_SOCK_NAME=${2:-/tmp/shm_sock_69}
+SHM_SOCK_NAME=${2:-/tmp/shm/sock_69}
 # SHM_FPS=${3:-20} 
 SHM_FPS=${3:-25} 
 
