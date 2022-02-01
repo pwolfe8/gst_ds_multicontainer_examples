@@ -17,6 +17,9 @@ ONBUILD RUN cd /opt/nvidia/deepstream/deepstream-6.0/sources/apps/sample_apps/de
 FROM build_${BUILD_ENV}
 RUN apt update && apt install -y graphviz curl
 
+# copy in dot2graph helper script
+COPY helper_scripts/dot2graph.sh /usr/local/bin/dot2graph
+
 # copy in custom starting script & service files
 # COPY helper_scripts/custom_starting_script.sh /usr/local/bin/
 # COPY helper_scripts/example_service.py /usr/local/bin/
