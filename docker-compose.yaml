@@ -5,6 +5,7 @@ services:
 
     image: video_intake_img
     container_name: video_intake
+    env_file: .env
 
     command: tail -F /dev/null
 
@@ -39,6 +40,7 @@ services:
   gpu_consumer1:    
     image: gpu_consumer1_img
     container_name: gpu_consumer1
+    env_file: .env
 
     command: tail -F /dev/null
 
@@ -77,6 +79,7 @@ services:
     
     image: gpu_consumer2_img
     container_name: gpu_consumer2
+    env_file: .env
 
     command: tail -F /dev/null
 
